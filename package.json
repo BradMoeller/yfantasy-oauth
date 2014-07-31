@@ -23,6 +23,7 @@
   "dependencies": {
     "express": "3.x",
     "everyauth": "*",
+    "connect": "*",
     "express3-handlebars": "*",
     "request": "*"
   },

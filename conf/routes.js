@@ -7,7 +7,7 @@ var request = require('request'),
 module.exports = function (app) {
 
     app.get('/', function (req, res) {
-
+        console.log('Inside /');
         if (req.session && req.session.auth) {
             var API_AUTH = {
                 consumer_key: config.consumer_key,

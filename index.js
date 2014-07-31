@@ -6,6 +6,7 @@ var everyauth = require('everyauth'),
     app = express(),
     config = require('./conf/config.js'),
     users = require('./lib/users.js'),
+    connect = require('connect'),
     hbs = exphbs.create({ defaultLayout: 'main' });
 
 
@@ -15,12 +16,14 @@ everyauth.everymodule.findUserById(users.findUser);
 everyauth.yahoo.consumerKey(config.consumer_key)
                .consumerSecret(config.consumer_secret)
                .findOrCreateUser(users.findOrCreateUser)
+               //.entryPath('/auth/yahoo')
+        	     //.callbackPath('/auth/yahoo/callback')
                .redirectPath('/');
 
 app.use(express.bodyParser());
-app.use(express.cookieParser('shazam'));
+app.use(express.cookieParser('mr ripley'));
 app.use(express.session());
-app.use(everyauth.middleware());
+app.use(everyauth.middleware(app));
 app.use(express.static('public'));
 app.use(app.router);
 require('./conf/routes.js')(app);
